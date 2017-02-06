@@ -35,7 +35,7 @@ import java.util.List;
  */
 
 public final class AppVisibilityDetector {
-    private static boolean DEBUG = true;
+    private static boolean DEBUG = false;
     private static final String TAG = "AppVisibilityDetector";
     private static AppVisibleCallback sAppVisibleCallback;
     private static boolean sIsForeground = false;
