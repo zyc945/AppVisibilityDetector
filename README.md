@@ -33,3 +33,7 @@ used examples:
 the MyApp is your Application class.
 
 > public class MyApp extends Application { ... }
+
+## License
+
+This library is distributed under the Apache 2.0 license.
