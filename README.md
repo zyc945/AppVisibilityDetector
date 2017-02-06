@@ -13,12 +13,15 @@ detect app visibility status
 
 ## how to use
 
-AppVisibilityDetector implement in one java file, just download [AppVisibilityDetector.java](https://github.com/zyc945/AppVisibilityDetector/blob/master/AppVisibilityDetectorLlib/src/main/java/com/zyc945/detector/AppVisibilityDetector.java) and add to you project, enjoy it.
+AppVisibilityDetector implement in one java file,
+download [AppVisibilityDetector.java](https://github.com/zyc945/AppVisibilityDetector/blob/master/AppVisibilityDetectorLlib/src/main/java/com/zyc945/detector/AppVisibilityDetector.java) and add to you project
+may be the easiest way to use.
+I'll build a aar for gradle used later.
 
 used examples:
 
 > ```
->     AppVisibilityDetector.init(MyApp.this, new AppVisibleCallback() {
+>     AppVisibilityDetector.init(MyApp.this, new AppVisibilityCallback() {
 >         @Override
 >         public void onAppGotoForeground() {
 >             //app is from background to foreground

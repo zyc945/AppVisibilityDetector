@@ -37,15 +37,15 @@ import java.util.List;
 public final class AppVisibilityDetector {
     private static boolean DEBUG = false;
     private static final String TAG = "AppVisibilityDetector";
-    private static AppVisibleCallback sAppVisibleCallback;
+    private static AppVisibilityCallback sAppVisibilityCallback;
     private static boolean sIsForeground = false;
     private static Handler sHandler;
     private static final int MSG_GOTO_FOREGROUND = 1;
     private static final int MSG_GOTO_BACKGROUND = 2;
 
-    public static void init(final Application app, AppVisibleCallback gotoForegroundListener) {
+    public static void init(final Application app, AppVisibilityCallback appVisibilityCallback) {
         checkIsMainProcess(app);
-        sAppVisibleCallback = gotoForegroundListener;
+        sAppVisibilityCallback = appVisibilityCallback;
         app.registerActivityLifecycleCallbacks(new AppActivityLifecycleCallbacks());
 
         sHandler = new Handler(app.getMainLooper()) {
@@ -90,20 +90,20 @@ public final class AppVisibilityDetector {
     }
 
     private static void performAppGotoForeground() {
-        if (!sIsForeground && null != sAppVisibleCallback) {
+        if (!sIsForeground && null != sAppVisibilityCallback) {
             sIsForeground = true;
-            sAppVisibleCallback.onAppGotoForeground();
+            sAppVisibilityCallback.onAppGotoForeground();
         }
     }
 
     private static void performAppGotoBackground() {
-        if (sIsForeground && null != sAppVisibleCallback) {
+        if (sIsForeground && null != sAppVisibilityCallback) {
             sIsForeground = false;
-            sAppVisibleCallback.onAppGotoBackground();
+            sAppVisibilityCallback.onAppGotoBackground();
         }
     }
 
-    public interface AppVisibleCallback {
+    public interface AppVisibilityCallback {
         void onAppGotoForeground();
 
         void onAppGotoBackground();

@@ -4,7 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.zyc945.detector.AppVisibilityDetector;
-import com.zyc945.detector.AppVisibilityDetector.AppVisibleCallback;
+import com.zyc945.detector.AppVisibilityDetector.AppVisibilityCallback;
 
 /**
  * Author: zyc
@@ -18,7 +18,7 @@ public class MyApp extends Application {
     public void onCreate() {
         super.onCreate();
 
-        AppVisibilityDetector.init(this, new AppVisibleCallback() {
+        AppVisibilityDetector.init(this, new AppVisibilityCallback() {
             @Override
             public void onAppGotoForeground() {
                 Log.d(TAG, "onAppGotoForeground() called <----------");
