@@ -1,4 +1,4 @@
-# BgDetector
+# AppVisibilityDetector
 
 ## purpose
 
@@ -13,10 +13,7 @@ detect app visibility status
 
 ## how to use
 
-AppVisibilityDetector implement in one java file,
-download [AppVisibilityDetector.java](https://github.com/zyc945/AppVisibilityDetector/blob/master/AppVisibilityDetectorLlib/src/main/java/com/zyc945/detector/AppVisibilityDetector.java) and add to you project
-may be the easiest way to use.
-I'll build a aar for gradle used later.
+AppVisibilityDetector implement in one java file, download [AppVisibilityDetector.java](https://github.com/zyc945/AppVisibilityDetector/blob/master/AppVisibilityDetectorLlib/src/main/java/com/zyc945/detector/AppVisibilityDetector.java) and add to you project may be the easiest way to use. I'll build a aar for gradle used later.
 
 used examples:
 
@@ -33,4 +30,6 @@ used examples:
 >     });
 > ```
 
-> the MyApp is your Application class. public class MyApp extends Application { ... }
+the MyApp is your Application class.
+
+> public class MyApp extends Application { ... }
