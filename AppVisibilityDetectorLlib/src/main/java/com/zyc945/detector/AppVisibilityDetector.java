@@ -44,7 +44,10 @@ public final class AppVisibilityDetector {
     private static final int MSG_GOTO_BACKGROUND = 2;
 
     public static void init(final Application app, AppVisibilityCallback appVisibilityCallback) {
-        checkIsMainProcess(app);
+        if (!checkIsMainProcess(app)) {
+            return;
+        }
+
         sAppVisibilityCallback = appVisibilityCallback;
         app.registerActivityLifecycleCallbacks(new AppActivityLifecycleCallbacks());
 
@@ -71,22 +74,28 @@ public final class AppVisibilityDetector {
         };
     }
 
-    private static void checkIsMainProcess(Application app) {
+    public static boolean checkIsMainProcess(Application app) {
         ActivityManager activityManager = (ActivityManager) app.getSystemService(Context.ACTIVITY_SERVICE);
         List<RunningAppProcessInfo> runningAppProcessInfoList = activityManager.getRunningAppProcesses();
+        if (null == runningAppProcessInfoList) {
+            return false;
+        }
+
         String currProcessName = null;
         int currPid = android.os.Process.myPid();
         //find the process name
         for (RunningAppProcessInfo processInfo : runningAppProcessInfoList) {
-            if (processInfo.pid == currPid) {
+            if (null != processInfo && processInfo.pid == currPid) {
                 currProcessName = processInfo.processName;
             }
         }
 
         //is current process the main process
         if (!TextUtils.equals(currProcessName, app.getPackageName())) {
-            throw new IllegalStateException("make sure BgDetector.init(...) called in main process");
+            return false;
         }
+
+        return true;
     }
 
     private static void performAppGotoForeground() {

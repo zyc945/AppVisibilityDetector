@@ -30,4 +30,17 @@ public class MyApp extends Application {
             }
         });
     }
+
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+        Log.d(TAG, "onTrimMemory() level: " + level);
+        switch (level) {
+            case TRIM_MEMORY_UI_HIDDEN:
+                Log.d(TAG, "onTrimMemory() TRIM_MEMORY_UI_HIDDEN ---------->");
+                break;
+            default:
+                break;
+        }
+    }
 }
